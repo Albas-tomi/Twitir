@@ -1,0 +1,39 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-alert */
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import api from '../../utils/api';
+import { receiveThreadsActionCreator } from '../threads/action';
+import { receiveUsersActionCreator } from '../users/action';
+import { receiveLeaderboardsActionCreator } from '../leaderboard/action';
+
+function asyncPopulateUsersAndThreads() {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    try {
+      const users = await api.getAllUsers();
+      const threads = await api.getAllThreads();
+
+      dispatch(receiveUsersActionCreator(users));
+      dispatch(receiveThreadsActionCreator(threads));
+    } catch (error) {
+      alert(error.message);
+    }
+    dispatch(hideLoading());
+  };
+}
+
+function asyncReceiveLeaderboards() {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    try {
+      const leaderboards = await api.getLeaderboard();
+      dispatch(receiveLeaderboardsActionCreator(leaderboards));
+      // console.log(leaderboards);
+    } catch (error) {
+      alert(error.message);
+    }
+    dispatch(hideLoading());
+  };
+}
+
+export { asyncPopulateUsersAndThreads, asyncReceiveLeaderboards };
