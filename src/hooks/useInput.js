@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 
 function useInput(defaultValue = '') {
@@ -7,7 +8,7 @@ function useInput(defaultValue = '') {
   function handleValueChange({ target }) {
     setValue(target.value);
   }
-  return [value, handleValueChange, setValue];
+  return [value, setValue];
 }
 
 export default useInput;
