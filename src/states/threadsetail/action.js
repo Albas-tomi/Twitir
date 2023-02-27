@@ -28,11 +28,11 @@ function clearThreadDetailActionCreator() {
   };
 }
 
-function addThreadCommentActionCreator(threadComment) {
+function addThreadCommentActionCreator(comment) {
   return {
     type: ActionType.RECEIVE_THREAD_COMMENT,
     payload: {
-      threadComment,
+      comment,
     },
   };
 }
@@ -155,8 +155,8 @@ function asyncAddThreadComment({ content, id }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const threadComment = await api.createComment({ content, id });
-      dispatch(addThreadCommentActionCreator(threadComment));
+      const comment = await api.createComment({ content, id });
+      dispatch(addThreadCommentActionCreator(comment));
     } catch (error) {
       alert(error.message);
     }
