@@ -11,7 +11,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         ...threadDetail,
         comments: [
           action.payload.comment,
-          // ...threadDetail.comments,
+          ...threadDetail.comments,
         ],
       };
     case ActionType.TOGGLE_UP_VOTE_DETAIL:
