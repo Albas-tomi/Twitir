@@ -45,7 +45,7 @@ function TwitInput() {
           /320
         </label>
         <input value={body} onChange={handleBodyChange} className="h-20 rounded-md p-2 border-slate-700 border-solid border-[1px] focus:border-blue-600 focus:outline-none" type="text" />
-        <button onClick={onAddThread} className="bg-blue-400 p-2 rounded-lg hover:bg-blue-500 duration-700 text-center w-1/4 " type="submit">Buat</button>
+        <button data-cy="submit" onClick={onAddThread} className="bg-blue-400 p-2 rounded-lg hover:bg-blue-500 duration-700 text-center w-1/4 " type="submit">Buat</button>
       </div>
     </div>
   );
