@@ -48,15 +48,15 @@ describe('Login spec', () => {
     });
   });
   // Halaman muatHome
-  // it('should display homepage when email and password are correct', () => {
-  //   // isi email
-  //   cy.get('input[placeholder="Email Address"]').type('hay@gmail.com');
-  //   // isi password
-  //   cy.get('input[placeholder="Password"]').type('passwordkunih');
+  it('should display homepage when email and password are correct', () => {
+    // isi email
+    cy.get('input[placeholder="Email Address"]').type('ayulandari@gmail.com');
+    // isi password
+    cy.get('input[placeholder="Password"]').type('12345678');
 
-  //   // klik login
-  //   cy.get('button').contains(/^Masuk$/).click();
-  //   // // Verifikasi
-  //   cy.get('Header').should('be.visible');
-  // });
+    // klik login
+    cy.get('button').contains(/^Masuk$/).click();
+    // // Verifikasi
+    cy.get('[data-cy="submit"]').should('be.visible');
+  });
 });

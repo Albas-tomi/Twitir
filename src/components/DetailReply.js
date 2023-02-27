@@ -5,17 +5,19 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { asyncAddThreadComment } from '../states/threadsetail/action';
 
 function DetailReply() {
   const { id } = useParams();
   const [content, setContent] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // eslint-disable-next-line no-shadow
   const onReplyThread = ({ id, content }) => {
     dispatch(asyncAddThreadComment({ id, content }));
+    navigate('/');
   };
 
   const handleBodyChange = ({ target }) => {

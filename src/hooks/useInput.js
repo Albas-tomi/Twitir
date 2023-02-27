@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+
 import { useState } from 'react';
 
 function useInput(defaultValue = '') {
