@@ -57,6 +57,6 @@ describe('Login spec', () => {
     // klik login
     cy.get('button').contains(/^Masuk$/).click();
     // // Verifikasi
-    cy.get('[data-cy="submit"]').click();
+    cy.get('[data-cy="submit"]').should('be.visible');
   });
 });
