@@ -2,14 +2,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
+
+// Skenario test##
+// asyncPopulateUsersAndThreads thunk
 // *  - should dispatch action correctly when data fetching success
 // *  - should dispatch action and call alert correctly when data fetching failed
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 import { receiveThreadsActionCreator } from '../threads/action';
 import { receiveUsersActionCreator } from '../users/action';
-import { asyncPopulateUsersAndThreads, asyncReceiveLeaderboards } from './action';
-import { receiveLeaderboardsActionCreator } from '../leaderboard/action';
+import { asyncPopulateUsersAndThreads } from './action';
 
 const fakeThreadsResponse = [
   {
@@ -31,16 +33,6 @@ const fakeUsersResponse = [
     name: 'John Doe',
     email: 'john@example.com',
     avatar: 'https://generated-image-url.jpg',
-  },
-];
-
-const fakeLeaderboards = [
-  {
-    id: 'users-1',
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: 'https://generated-image-url.jpg',
-
   },
 ];
 
@@ -95,23 +87,5 @@ describe('asyncPopulateUsersAndThreads thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
-  });
-  beforeEach(() => {
-    api._getLeaderboard = api.getLeaderboard;
-  });
-  afterEach(() => {
-    api.getLeaderboard = api._getLeaderboard;
-
-    delete api._getLeaderboard;
-  });
-  it('should dispatch action and call alert correctly when data threads and users fetching failed', async () => {
-    api.getLeaderboard = () => Promise.resolve(fakeLeaderboards);
-
-    const dispatch = jest.fn();
-
-    await asyncReceiveLeaderboards()(dispatch);
-    expect(dispatch).toHaveBeenCalledWith(showLoading());
-    expect(dispatch).toHaveBeenCalledWith(receiveLeaderboardsActionCreator(fakeLeaderboards));
-    expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
 });

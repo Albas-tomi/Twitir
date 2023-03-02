@@ -28,7 +28,6 @@ function asyncReceiveLeaderboards() {
     try {
       const leaderboards = await api.getLeaderboard();
       dispatch(receiveLeaderboardsActionCreator(leaderboards));
-      // console.log(leaderboards);
     } catch (error) {
       alert(error.message);
     }
